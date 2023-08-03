@@ -47,7 +47,7 @@ const AddCourse = () => {
         title: prevcourse.title,
         description: prevcourse.description,
         image: prevcourse.image,
-        price: prevcourse.price,
+        price: parseInt(prevcourse.price),
       },
       {
         headers: {
@@ -59,7 +59,7 @@ const AddCourse = () => {
       title: "",
       description: "",
       image: "",
-      price: "",
+      price: null,
     });
     getCourse();
   };

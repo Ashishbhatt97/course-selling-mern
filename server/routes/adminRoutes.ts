@@ -31,7 +31,7 @@ const CourseInputObj = z.object({
     .min(5, { message: "Must be 5 or more characters long" })
     .max(400, { message: "Must be less than 400 characters" })
     .optional(),
-  price: z.string(),
+  price: z.number(),
 });
 
 const partialCourseObj = CourseInputObj.partial();
