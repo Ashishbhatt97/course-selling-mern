@@ -36,13 +36,12 @@ export const Uifront = () => {
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0, y: 0 }}
-          transition={{ duration: 1.2 }}
           className="font-['Poppins'] flex justify-center gap-4 w-full my-3 pt-8"
         >
           <motion.button
             whileHover={{ scale: 1.02 }}
             initial={{ scale: 1 }}
-            className="font-['Poppins'] h-20 bg-black text-white w-[300px] hover:bg-white hover:border-2 hover:border-black hover:text-stone-950 rounded-2xl transition-all"
+            className="font-['Poppins'] h-20 border-2 border-black w-[350px] hover:border-violet-600 rounded-2xl transition-all"
           >
             <Link to={"/courses"}>Browse All Courses</Link>
           </motion.button>

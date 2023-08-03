@@ -32,10 +32,11 @@ const AddCourse = () => {
         Authorization: `Bearer ${localStorage.getItem("Adtoken")}`,
       },
     });
+    setLoading(false);
     setCourse(response.data);
   };
   useEffect(() => {
-    setLoading(false);
+    
     getCourse();
   }, []);
 
