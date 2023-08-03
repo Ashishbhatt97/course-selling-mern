@@ -12,7 +12,7 @@ interface CourseObj {
   title: String;
   description: String;
   image?: String;
-  price: Number;
+  price: String;
   isPublished: Boolean;
 }
 

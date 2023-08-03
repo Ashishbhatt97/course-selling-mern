@@ -18,7 +18,7 @@ export const Uifront = () => {
         animate={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1 }}
-        className="font-['Poppins'] h-full w-full p-[150px] flex flex-col justify-center items-center overflow-hidden"
+        className="font-['Poppins'] h-[80vh] w-full p-[150px] flex flex-col justify-center items-center overflow-hidden"
       >
         <motion.h1
           animate={{ opacity: 1, y: 0 }}
