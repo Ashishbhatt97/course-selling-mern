@@ -27,7 +27,7 @@ const AdminRegister = () => {
           Admin Register Page
         </h1>
       </div>
-      <div className="font-['Poppins'] flex flex-col gap-5 h-[370px]   w-[350px] border-gray-300 border-2 p-8 rounded-lg shadow-lg">
+      <div className="font-['Poppins'] flex flex-col gap-5 h-[370px] w-[370px] border-gray-300 border-2 p-8 rounded-lg shadow-lg">
         <FormControl>
           <InputLabel htmlFor="my-input">Username</InputLabel>
           <Input
@@ -50,7 +50,7 @@ const AdminRegister = () => {
         </FormControl>
 
         <button
-          className="font-['Poppins'] mt-6 bg-black text-white w-full h-[40px] font-semibold hover:bg-white hover:border-2 hover:border-black hover:text-stone-950 rounded-xl transition-all"
+          className="font-['Poppins'] mt-6 bg-black text-white w-full h-[60px] font-semibold hover:bg-white hover:border-2 hover:border-black hover:text-stone-950 rounded-xl transition-all"
           onClick={signupHandle}
         >
           Sign Up

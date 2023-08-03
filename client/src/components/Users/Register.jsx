@@ -25,7 +25,7 @@ const navigate = useNavigate();
           User Register Page
         </h1>
       </div>
-      <div className="font-['Poppins'] flex flex-col gap-5 h-[400px]   w-[350px] border-gray-300 border-2 p-8 rounded-lg shadow-lg">
+      <div className="font-['Poppins'] flex flex-col gap-5 h-[390px] w-[370px] border-gray-300 border-2 p-8 rounded-lg shadow-lg">
         <FormControl>
           <label htmlFor="password" className="font-['Poppins'] text-black/25">
             Username

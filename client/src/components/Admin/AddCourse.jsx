@@ -12,14 +12,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { easeInOut, motion } from "framer-motion";
+import Loading from "../Loading";
 
 const AddCourse = () => {
   const navigate = useNavigate();
   const [addCourse, setAddCourse] = useState(false);
   const [course, setCourse] = useState([]);
-  const [prevcourse, setPrevcourse] = useState({});
-
-
+  const [loading, setLoading] = useState(true);
+  const [prevcourse, setPrevcourse] = useState({
+    title: "",
+    description: "",
+    image: "",
+    price: "",
+  });
 
   const getCourse = async () => {
     const response = await axios.get("http://localhost:3000/admin/courses", {
@@ -30,6 +35,7 @@ const AddCourse = () => {
     setCourse(response.data);
   };
   useEffect(() => {
+    setLoading(false);
     getCourse();
   }, []);
 
@@ -48,6 +54,12 @@ const AddCourse = () => {
         },
       }
     );
+    setPrevcourse({
+      title: "",
+      description: "",
+      image: "",
+      price: "",
+    });
     getCourse();
   };
   const deleteCourse = async (courseId) => {
@@ -61,29 +73,27 @@ const AddCourse = () => {
     );
     setCourse(response.data.course);
   };
-  const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
-  };
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <div>
         <div>
           {addCourse && (
             <div className="font-['Poppins'] flex flex-col justify-center items-center mt-10">
               <div
-                className="font-['Poppins'] w-[50px] h-[50px] rounded-full border-2 border-black/25  absolute right-[150px] top-[100px] flex justify-center items-center text-2xl  gilroy-ExtraBold shadow-lg cursor-pointer"
+                className="font-['Poppins'] w-[50px] h-[50px] rounded-full border-2 font-bold border-black/25  absolute right-[150px] top-[100px] flex justify-center items-center text-2xl  gilroy-ExtraBold shadow-lg cursor-pointer"
                 onClick={() => {
                   setAddCourse(false);
                 }}
               >
                 X
               </div>
-              <motion.h1 className="font-['Poppins'] text-[50px] uppercase  text-black ">
+              <motion.h1 className="font-['Poppins'] text-[50px] font-bold uppercase  text-black ">
                 Add Course
               </motion.h1>
               <motion.div
-                variants={variants}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ ease: easeInOut, delay: 0.01 }}
@@ -152,7 +162,7 @@ const AddCourse = () => {
                 <div className="font-['Poppins'] flex justify-center items-center">
                   <motion.button
                     className="font-['Poppins']   bg-white border-2 flex items-center justify-center w-[200px] h-[45px] mt-[35px] border-black  rounded-lg transition-all"
-                    onClick={addCourseHandle}
+                    onClick={() => addCourseHandle()}
                   >
                     Add Course
                   </motion.button>
@@ -170,9 +180,15 @@ const AddCourse = () => {
               Add New Course
             </motion.button>
           )}
-          <h1 className="font-['Poppins'] text-[50px] uppercase font-bold text-stone-900 mt-8">
-            Available Courses
-          </h1>
+          {course.length !== 0 ? (
+            <h1 className="font-['Poppins'] text-[50px] uppercase font-bold text-stone-900 mt-8">
+              Available Courses
+            </h1>
+          ) : (
+            <h1 className="font-['Poppins'] text-[50px] uppercase font-bold text-stone-900 mt-8">
+              No Course Published
+            </h1>
+          )}
         </div>
         <div className="font-['Poppins'] flex justify-between items-center p-10 flex-wrap w-full">
           <div style={{ display: "flex", gap: "40px", flexWrap: "wrap" }}>
@@ -213,12 +229,14 @@ function MediaCard(props) {
         title="green iguana"
       />
       <CardContent>
-        <h1 className="font-['Poppins'] text-[14px] font-bold">{props.title}</h1>
-        <h6>
-          {props.description}
-        </h6>
+        <h1 className="font-['Poppins'] text-[14px] font-bold">
+          {props.title}
+        </h1>
+        <h6>{props.description}</h6>
       </CardContent>
-      <h5 className="font-['Poppins'] font-bold mx-4 text-gray-800">Price : ₹{props.price}</h5>
+      <h5 className="font-['Poppins'] font-bold mx-4 text-gray-800">
+        Price : ₹{props.price}
+      </h5>
       <div className="font-['Poppins'] flex justify-center items-center gap-6 mt-4">
         <motion.button
           className="font-['Poppins']  bg-white border-2 border-black text-black w-[120px] h-[45px]  rounded-lg transition-all"
